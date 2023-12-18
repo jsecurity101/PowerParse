@@ -28,9 +28,11 @@ Obtains the size of a PE file.
 Helper function to export PEs. Used within Get-PEInfo. 
 
 * `Get-VTScore`
+  
 Obtains the positive results of a PE based off a file's hash. Future versions will allow for more dynamic queries. Need to supply VTAPI for query to work. 
 
 * `Get-TTPs`
+  
 Uses string matching to identify if certain behaviors are being performed within a PE. 
 
 
