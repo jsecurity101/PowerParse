@@ -11,29 +11,17 @@ To use this module, type: `Import-Module PowerParse.psd1`.
 
 The following functions are supported: 
 
-* `Get-PEInfo`
-    
-Obtains information about a PE (type, architectrue, etc), checks to see if multiple PEs are embedded within the binary. Has switches `-Export` to export embedded PEs, `GetVTScore` to get the score of the PE, and `GetTTPs` to run analysis on what behaviors the PE executes.
+* `Get-PEInfo` - Obtains information about a PE (type, architectrue, etc), checks to see if multiple PEs are embedded within the binary. Has switches `-Export` to export embedded PEs, `GetVTScore` to get the score of the PE, and `GetTTPs` to run analysis on what behaviors the PE executes.
 
-* `Get-MZHeaders`
+* `Get-MZHeaders` - Identifies how many PEs are embedded within 1 file. 
 
-Identifies how many PEs are embedded within 1 file. 
+* `Get-PESize` - Obtains the size of a PE file. 
 
-* `Get-PESize`
+* `Export-PE` - Helper function to export PEs. Used within Get-PEInfo. 
 
-Obtains the size of a PE file. 
+* `Get-VTScore` - Obtains the positive results of a PE based off a file's hash. Future versions will allow for more dynamic queries. Need to supply VTAPI for query to work. 
 
-* `Export-PE`
-
-Helper function to export PEs. Used within Get-PEInfo. 
-
-* `Get-VTScore`
-  
-Obtains the positive results of a PE based off a file's hash. Future versions will allow for more dynamic queries. Need to supply VTAPI for query to work. 
-
-* `Get-TTPs`
-  
-Uses string matching to identify if certain behaviors are being performed within a PE. 
+* `Get-TTPs` - -Uses string matching to identify if certain behaviors are being performed within a PE. 
 
 
 # Acknowledgements
