@@ -1,0 +1,244 @@
+{
+    "apis": [
+        {
+            "name": "AddAce",
+            "tag": "TX_MiscAction"
+        },
+        {
+            "name": "AdjustTokenPrivileges",
+            "tag": "TX_MiscAction"
+        },
+        {
+            "name": "GetProcAddress",
+            "tag": "TX_MiscAction"
+        },
+        {
+            "name": "BCryptGenRandom",
+            "tag": "T1486_Encryption"
+        },
+        {
+            "name": "NetServerEnum",
+            "tag": "TX_MiscAction"
+        },
+        {
+            "name": "NetShareEnum",
+            "tag": "TX_MiscAction"
+        },
+        {
+            "name": "IISReset",
+            "tag": "TX_MiscAction"
+        },
+        {
+            "name": "^(CreateProcess)[AW]?$",
+            "tag": "TA0002_CreateProcess"
+        },
+        {
+            "name": "^(CreateProcessAsUser)[AW]?$",
+            "tag": "TA0002_CreateProcess"
+        },
+        {
+            "name": "NtCreateUserProcess",
+            "tag": "TA0002_CreateProcess"
+        },
+        {
+            "name": "NtCreateProcess",
+            "tag": "TA0002_CreateProcess"
+        },
+        {
+            "name": "OpenProcess",
+            "tag": "TX_ProcessHandle"
+        },
+        {
+            "name": "NtOpenProcess",
+            "tag": "TX_ProcessHandle"
+        },
+        {
+            "name": "CreateToolhelp32Snapshot",
+            "tag": "TX_ProcessHandle"
+        },
+        {
+            "name": "CoCreateInstance",
+            "tag": "TX_COMInitialization"
+        },
+        {
+            "name": "CoCreateInstanceEx",
+            "tag": "TX_COMInitialization"
+        },
+        {
+            "name": "CoGetClassObject",
+            "tag": "TX_COMInitialization"
+        },
+        {
+            "name": "CoGetObject",
+            "tag": "TX_COMInitialization"
+        },
+        {
+            "name": "^(CreateNamedPipe)[AW]?$",
+            "tag": "TX_NamedPipeCreation"
+        },
+        {
+            "name": "^(CreateFile)[AW]?$",
+            "tag": "TX_FileCreate"
+        },
+        {
+            "name": "NtCreateFile",
+            "tag": "TX_FileCreate"
+        },
+        {
+            "name": "^(CreateService)[AW]?$",
+            "tag": "T1543_003_ServiceCreation"
+        },
+        {
+            "name": "^(StartService)[AW]?$",
+            "tag": "T1569_002_ServiceExecution"
+        },
+        {
+            "name": "IsDebuggerPresent",
+            "tag": "T1497_AntiAnalysis"
+        },
+        {
+            "name": "GetSystemInfo",
+            "tag": "T1497_AntiAnalysis"
+        },
+        {
+            "name": "GlobalMemoryStatusEx",
+            "tag": "T1497_AntiAnalysis"
+        },
+        {
+            "name": "^(CreateProcessWithLogon)[AW]?$",
+            "tag": "T1134_TokenImpersonation"
+        },
+        {
+            "name": "^(CreateProcessWithToken)[AW]?$",
+            "tag": "T1134_TokenImpersonation"
+        },
+        {
+            "name": "ImpersonateLoggedOnUser",
+            "tag": "T1134_TokenImpersonation"
+        },
+        {
+            "name": "WinCrypt",
+            "tag": "T1486_Encryption"
+        },
+        {
+            "name": "CryptAcquireContext",
+            "tag": "T1486_Encryption"
+        },
+        {
+            "name": "CryptGenKey",
+            "tag": "T1486_Encryption"
+        },
+        {
+            "name": "CryptDeriveKey",
+            "tag": "T1486_Encryption"
+        },
+        {
+            "name": "CryptDecrypt",
+            "tag": "T1486_Encryption"
+        },
+        {
+            "name": "CryptReleaseContext",
+            "tag": "T1486_Encryption"
+        },
+        {
+            "name": "VirtualAllocEx",
+            "tag": "ProcessInjection_Allocation"
+        },
+        {
+            "name": "WriteProcessMemory",
+            "tag": "ProcessInjection_Write"
+        },
+        {
+            "name": "GobalAddAtom",
+            "tag": "ProcessInjection_Write"
+        },
+        {
+            "name": "QueueUserAPC",
+            "tag": "ProcessInjection_Execute"
+        },
+        {
+            "name": "NtQueueApcThread",
+            "tag": "ProcessInjection_Execute"
+        },
+        {
+            "name": "^(LoadLibrary)[AW]?$",
+            "tag": "ProcessInjection_Execute"
+        },
+        {
+            "name": "^(LoadLibraryEx)[AW]?$",
+            "tag": "ProcessInjection_Execute"
+        },
+        {
+            "name": "CreateRemoteThread",
+            "tag": "ProcessInjection_Execute"
+        },
+        {
+            "name": "NtCreateThreadEx",
+            "tag": "ProcessInjection_Execute"
+        },
+        {
+            "name": "RtlCreateUserThread",
+            "tag": "ProcessInjection_Execute"
+        },
+        {
+            "name": "NtUnmapViewOfSection",
+            "tag": "SectionMapping"
+        },
+        {
+            "name": "ZwUnmapViewOfSection",
+            "tag": "SectionMapping"
+        },
+        {
+            "name": "ResumeThread",
+            "tag": "ThreadContinuation"
+        },
+        {
+            "name": "DuplicateToken",
+            "tag": "TokenDuplicate"
+        },
+        {
+            "name": "DuplicateTokenEx",
+            "tag": "TokenDuplicate"
+        },
+        {
+            "name": "NtDuplicateToken",
+            "tag": "TokenDuplicate"
+        },
+        {
+            "name": "SetThreadToken",
+            "tag": "ThreadTokenSet"
+        },
+        {
+            "name": "NtSetInformationThread",
+            "tag": "ThreadTokenSet"
+        },
+        {
+            "name": "MiniDumpWriteDump",
+            "tag": "ProcessRead"
+        },
+        {
+            "name": "NtReadVirtualMemory",
+            "tag": "ProcessRead"
+        },
+        {
+            "name": "ReadProcessMemory",
+            "tag": "ProcessRead"
+        },
+        {
+            "name": "DeviceIoControl",
+            "tag": "DeviceCodeExecution"
+        },
+        {
+            "name": "NtDeviceIoControlFile",
+            "tag": "DeviceCodeExecution"
+        },
+        {
+            "name": "NtFsControlFile",
+            "tag": "DeviceCodeExecution"
+        },
+        {
+            "name": "^(LogonUserExEx|LogonUserEx|LogonUser)[AW]?$",
+            "tag": "UserLogon"
+        }
+    ]
+}

@@ -58,6 +58,7 @@ function Get-MZHeaders{
     for ($i = 0; $i -lt ($FileBytes.Length - $byteSequence.Length + 1); $i++) 
     {
         $subArray = $FileBytes[$i..($i + $byteSequence.Length - 1)]
+
     
         # Check if the current bytes match the desired sequence
         if (-join $subArray -eq -join $byteSequence) {
@@ -65,12 +66,18 @@ function Get-MZHeaders{
             $BinaryReader = New-Object -TypeName IO.BinaryReader -ArgumentList $MemoryStream
 
             $E_LFANEW_Offset = ($i + 0x3C)
-
             $null = $MemoryStream.Seek($E_LFANEW_Offset, 'Begin')
            
-            $E_LFANEW_Value = $BinaryReader.ReadInt16()
+            $E_LFANEW_Value = $BinaryReader.ReadUInt32()
            
             $E_LFANEW = $E_LFANEW_Value + $i
+            
+            #Check to see if the E_LFANEW is within the bounds of the file
+            if($E_LFANEW -gt $FileBytes.Length){
+                $MemoryStream.Dispose()
+                $BinaryReader.Dispose()
+                continue
+            }
 
             # Seek to the PE signature from the beginning of the stream
             $null = $MemoryStream.Seek($E_LFANEW, 'Begin')

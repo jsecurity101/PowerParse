@@ -34,7 +34,6 @@ A PSCustomObject with the following properties:
 * ImportTableAddress - The address of the Import Table.
 * ImportTableAddressOffset - The offset of the Import Table.
 * IsDotNetBinary - Whether or not the PE file is a .NET binary.
-* DotNetDirectoryOffset - The offset of the .NET directory.
 * NumberOfPEs - The number of MZ headers.
 * PEOffsets - The offsets of the MZ headers.
 * PESizes - The sizes of the MZ headers.
@@ -108,7 +107,7 @@ Gets information about the cmd.exe file. Will export the PE file if there are mu
     #Checking to see if valid PE 
     $null = $MemoryStream.Seek(0x3C, 'Begin')
 
-    $E_LFANEW = $BinaryReader.ReadInt32()
+    $E_LFANEW = $BinaryReader.ReadUInt32()
 
     # Seek to NT headers
     $null = $MemoryStream.Seek($E_LFANEW, 'Begin')
@@ -142,7 +141,6 @@ Gets information about the cmd.exe file. Will export the PE file if there are mu
 
      # Checking to see if the binary is a .NET binary: 
     $MachineHex = $Machine.ToString("X")
-    $global:foo = $MachineHex
     $machineType = "NotSupported"
     $PEArch = "NotSupported"
     switch($MachineHex)
@@ -275,7 +273,6 @@ Gets information about the cmd.exe file. Will export the PE file if there are mu
         ImportTableAddress = $ImportTableAddress
         ImportTableAddressOffset = $ImportTableAddressOffset
         IsDotNetBinary = $DotNetBinary
-        DotNetDirectoryOffset = $NetfileOffset.toString("X")
         NumberOfPEs = $numOfMzHeaders.numOfMz
         PEOffsets = $numOfMzHeaders.offsets
         PESizes = $PESize 
