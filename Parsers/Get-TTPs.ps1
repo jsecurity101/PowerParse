@@ -30,6 +30,7 @@ A PSCustomObject with the following properties:
 * TX_VulnerableDriver - Whether or not the PE file has a function known to be within the Vulnerable Driver technique.
 * TX_COMInitialization - Whether or not the PE file has a function known to be within the COM Initialization technique.
 * TX_NamedPipeCreation - Whether or not the PE file has a function known to be within the Named Pipe Creation technique.
+* TX_MailslotCreation - Whether or not the PE file has a function known to be within Mailslot creations.
 * TX_MiscAction - Whether or not the PE file has a function known to be within the Misc Action technique.
 * TA0002_CreateProcess_APIs - The APIs found within the Create Process technique.
 * T1055_ProcessInjection_APIs - The APIs found within the Process Injection technique.
@@ -44,6 +45,7 @@ A PSCustomObject with the following properties:
 * TX_VulnerableDriver_APIs - The APIs found within the Vulnerable Driver technique.
 * TX_COMInitialization_APIs - The APIs found within the COM Initialization technique.
 * TX_NamedPipeCreation_APIs - The APIs found within the Named Pipe Creation technique.
+* TX_MailslotCreation_APIs - The APIs found within mailslot creations.
 * TX_MiscAction_APIs - The APIs found within the Misc Action technique.
 
 
@@ -101,6 +103,7 @@ Gets TTPs for the cmd.exe file.
     $T1486_Encryption_APIs = @()
     $T1497_AntiAnalysis_APIs = @()
     $TX_NamedPipeCreation_APIs = @()
+    $TX_MailslotCreation_APIs = @()
     $TX_COMInitialization_APIs = @()
     $T1569_002_ServiceExecution_APIs = @()
     $T1543_003_ServiceCreation_APIs = @()
@@ -127,6 +130,7 @@ Gets TTPs for the cmd.exe file.
     $ProcessHollowing = $false
     $COMInitialization = $false
     $CreateNamedPipe = $false
+    $CreateMailslot = $false
     $VulnerableDriver = $false
     $ServiceCreation = $false
     $ServiceExecution = $false
@@ -208,6 +212,12 @@ Gets TTPs for the cmd.exe file.
                 {
                     $CreateNamedPipe = $true
                     $TX_NamedPipeCreation_APIs += $matchResults
+                    break
+                }
+                "TX_MailslotCreation"
+                {
+                    $CreateMailslot = $true
+                    $TX_MailslotCreation_APIs += $matchResults
                     break
                 }
                 "DeviceCodeExecution"
@@ -318,6 +328,7 @@ Gets TTPs for the cmd.exe file.
         TX_VulnerableDriver =               $VulnerableDriver
         TX_COMInitialization =              $COMInitialization
         TX_NamedPipeCreation =              $CreateNamedPipe
+        TX_MailslotCreation =               $CreateMailslot
         TX_MiscAction =                     $MiscAction
         TA0002_CreateProcess_APIs =         $TA0002_CreateProcess_APIs | Select-Object -Unique
         T1055_ProcessInjection_APIs =       $T1055_ProcessInjection_APIs | Select-Object -Unique
@@ -332,6 +343,7 @@ Gets TTPs for the cmd.exe file.
         T1497_AntiAnalysis_APIs =           $T1497_AntiAnalysis_APIs | Select-Object -Unique
         TX_COMInitialization_APIs =         $TX_COMInitialization_APIs | Select-Object -Unique
         TX_NamedPipeCreation_APIs =         $TX_NamedPipeCreation_APIs | Select-Object -Unique
+        TX_MailslotCreation_APIs =          $TX_MailslotCreation_APIs | Select-Object -Unique
         TX_MiscAction_APIs =                $MiscListAPIs
 
     }

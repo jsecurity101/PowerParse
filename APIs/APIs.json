@@ -239,6 +239,15 @@
         {
             "name": "^(LogonUserExEx|LogonUserEx|LogonUser)[AW]?$",
             "tag": "UserLogon"
+        },
+        {
+            "name": "NtCreateMailslotFile",
+            "tag": "TX_MailslotCreation"
+        }
+        ,
+        {
+            "name": "^(CreateMailslot)[AW]?$",
+            "tag": "TX_MailslotCreation"
         }
     ]
 }
