@@ -21,7 +21,7 @@ The following functions are supported:
 
 * `Get-VTScore` - Obtains the positive results of a PE based off a file's hash. Future versions will allow for more dynamic queries. Need to supply VTAPI for query to work. 
 
-* `Get-TTPs` - -Uses string matching to identify if certain behaviors are being performed within a PE. 
+* `Get-TTPs` - Uses string matching to identify if certain behaviors are being performed within a PE. 
 
 
 # Acknowledgements

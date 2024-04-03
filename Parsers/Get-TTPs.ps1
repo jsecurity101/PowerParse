@@ -13,6 +13,9 @@ Get-TTPs pulls ASCII and Unicode strings and then parses to find functions known
 .PARAMETER FilePath
 The path to the PE file.
 
+.PARAMETER APIFilePath
+The path to the API.json file.
+
 .OUTPUTS
 A PSCustomObject with the following properties:
 * FilePath - The path to the PE file.
@@ -55,6 +58,11 @@ Get-TTPs -FilePath C:\Windows\System32\cmd.exe
 Gets TTPs for the cmd.exe file.
 
 .EXAMPLE
+Get-TTPs -FilePath C:\Windows\System32\cmd.exe -APIFilePath C:\Users\user\Desktop\APIs\APIs.json
+
+Gets TTPs for the cmd.exe file while specifying the API folder path.
+
+.EXAMPLE
 
 ls C:\Windows\System32\cmd.exe | Get-TTPs
 
@@ -71,7 +79,7 @@ Gets TTPs for the cmd.exe file.
         $FilePath,
 
 	    [String]
-        $APIFolder = "$PWD\APIs\"
+        $APIFilePath = "$PWD\APIs\APIs.json"
         
     )
 
@@ -94,7 +102,7 @@ Gets TTPs for the cmd.exe file.
 
     }
 
-    $jsonPath =  $APIFolder + "APIs.json"
+    $jsonPath =  $APIFilePath
     $jsonContent = Get-Content $jsonPath -Raw
     $apiList = ConvertFrom-Json -InputObject $jsonContent
 
@@ -157,7 +165,7 @@ Gets TTPs for the cmd.exe file.
         # Perform your specific checks or actions here
         $matchResults = $Results.Value | Select-String -Pattern $apiName -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
 
-        if ($matchResults -ne $null) {
+        if ($null -ne $matchResults) {
 
             # Check if the tag of the API matches and update the corresponding variable
             switch($apiTag){
