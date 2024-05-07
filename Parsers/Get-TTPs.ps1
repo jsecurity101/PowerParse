@@ -98,7 +98,7 @@ Gets TTPs for the cmd.exe file.
         #Pulling Ascii Strings
         $AsciiFileContents = Get-Content -Encoding 'UTF7' $File
         $AsciiRegex = [Regex] "[\x20-\x7E]{$MinimumLength,}"
-        $Results = $AsciiRegex.Matches($AsciiFileContents)
+        $Results += $AsciiRegex.Matches($AsciiFileContents)
 
     }
 

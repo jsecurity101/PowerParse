@@ -280,5 +280,6 @@ Gets information about the cmd.exe file. Will export the PE file if there are mu
         NewPEFilePath = $Exported
         VTPositiveResults = $VTResults
         TTPs = $TTPs
+        Strings = (Get-Strings -FilePath $RelativeFilePath).Strings
     }     
 }
