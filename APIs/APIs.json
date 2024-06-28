@@ -29,6 +29,14 @@
             "tag": "TX_MiscAction"
         },
         {
+            "name" : "^(Beacon)\\w*",
+            "tag" : "T1024_002_CommandAndControl"
+        },
+        {
+            "name" : "^(Beacon)\\w*",
+            "tag" : "TX_CobaltStrikeAPI"
+        },
+        {
             "name": "^(CreateProcess)[AW]?$",
             "tag": "TA0002_CreateProcess"
         },

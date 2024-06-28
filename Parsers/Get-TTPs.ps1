@@ -35,6 +35,8 @@ A PSCustomObject with the following properties:
 * TX_NamedPipeCreation - Whether or not the PE file has a function known to be within the Named Pipe Creation technique.
 * TX_MailslotCreation - Whether or not the PE file has a function known to be within Mailslot creations.
 * TX_MiscAction - Whether or not the PE file has a function known to be within the Misc Action technique.
+* TX_CobaltStrikeAPI - Whether or not the PE file has a function known to be within the Cobalt Strike API.
+* T1024_002_CommandAndControl - Whether or not the PE file has a function known to be within the Command and Control technique.
 * TA0002_CreateProcess_APIs - The APIs found within the Create Process technique.
 * T1055_ProcessInjection_APIs - The APIs found within the Process Injection technique.
 * T1055_012_ProcessHollowing_APIs - The APIs found within the Process Hollowing technique.
@@ -131,6 +133,8 @@ Gets TTPs for the cmd.exe file.
     $ProcessInjection_Write_APIs = @()
     $ProcessInjection_Execute_APIs = @()
     $LogonUser_APIs = @()
+    $CobaltStrike_APIs = @()
+    $CommandAndControl_APIs = @()
 
     $MiscAction = $false
     $CreateProcess = $false
@@ -156,6 +160,8 @@ Gets TTPs for the cmd.exe file.
     $ProcessRead = $false
     $ProcessOpen = $false
     $LogonUser = $false
+    $CobaltStrike = $false
+    $CommandAndControl = $false
 
     foreach ($api in $apiList.apis) {
         # Access API details
@@ -294,6 +300,18 @@ Gets TTPs for the cmd.exe file.
                     $LogonUser_APIs += $matchResults
                     break
                 }
+                "TX_CobaltStrikeAPI"
+                {
+                    $CobaltStrike = $true
+                    $CobaltStrike_APIs += $matchResults
+                    break
+                }
+                "T1024_002_CommandAndControl"
+                {
+                    $CommandAndControl = $true
+                    $CommandAndControl_APIs += $matchResults
+                    break
+                }
             }
         }
     }
@@ -338,6 +356,8 @@ Gets TTPs for the cmd.exe file.
         TX_NamedPipeCreation =              $CreateNamedPipe
         TX_MailslotCreation =               $CreateMailslot
         TX_MiscAction =                     $MiscAction
+        TX_CobaltStrikeAPI =                $CobaltStrike
+        T1024_002_CommandAndControl =       $CommandAndControl
         TA0002_CreateProcess_APIs =         $TA0002_CreateProcess_APIs | Select-Object -Unique
         T1055_ProcessInjection_APIs =       $T1055_ProcessInjection_APIs | Select-Object -Unique
         T1055_012_ProcessHollowing_APIs =   $T1055_012_ProcessHollowing_APIs | Select-Object -Unique
@@ -353,6 +373,8 @@ Gets TTPs for the cmd.exe file.
         TX_NamedPipeCreation_APIs =         $TX_NamedPipeCreation_APIs | Select-Object -Unique
         TX_MailslotCreation_APIs =          $TX_MailslotCreation_APIs | Select-Object -Unique
         TX_MiscAction_APIs =                $MiscListAPIs
+        TX_CobaltStrikeAPIs =               $CobaltStrike_APIs | Select-Object -Unique
+        T1024_002_CommandAndControl_APIs =  $CommandAndControl_APIs | Select-Object -Unique
 
     }
 
