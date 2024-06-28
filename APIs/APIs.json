@@ -157,6 +157,10 @@
             "tag": "ProcessInjection_Write"
         },
         {
+            "name": "NtWriteVirtualMemory",
+            "tag": "ProcessInjection_Write"
+        },
+        {
             "name": "GobalAddAtom",
             "tag": "ProcessInjection_Write"
         },
@@ -251,11 +255,30 @@
         {
             "name": "NtCreateMailslotFile",
             "tag": "TX_MailslotCreation"
-        }
-        ,
+        },
         {
             "name": "^(CreateMailslot)[AW]?$",
             "tag": "TX_MailslotCreation"
+        },
+        {
+            "name": "memcpy",
+            "tag": "TX_MemoryCpy"
+        },
+        {
+            "name": "memset",
+            "tag": "TX_MemoryCpy"
+        },
+        {
+            "name": "VirtualProtect",
+            "tag": "TX_MemoryProtectionManipulation"
+        },
+        {
+            "name": "VirtualProtectEx",
+            "tag": "TX_MemoryProtectionManipulation"
+        },
+        {
+            "name": "NtProtectVirtualMemory",
+            "tag": "TX_MemoryProtectionManipulation"
         }
     ]
 }

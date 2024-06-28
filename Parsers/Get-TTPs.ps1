@@ -52,6 +52,9 @@ A PSCustomObject with the following properties:
 * TX_NamedPipeCreation_APIs - The APIs found within the Named Pipe Creation technique.
 * TX_MailslotCreation_APIs - The APIs found within mailslot creations.
 * TX_MiscAction_APIs - The APIs found within the Misc Action technique.
+* TX_CobaltStrikeAPIs - The APIs found within the Cobalt Strike API.
+* T1024_002_CommandAndControl_APIs - The APIs found within the Command and Control technique.
+* TX_EtwPatch - Whether or not the PE file has a function known to be within the ETW Patch technique.
 
 
 .EXAMPLE
@@ -135,6 +138,9 @@ Gets TTPs for the cmd.exe file.
     $LogonUser_APIs = @()
     $CobaltStrike_APIs = @()
     $CommandAndControl_APIs = @()
+    $MemoryCpy_APIs = @()
+    $MemProtect_APIs = @()
+    $EtwPatch_APIs = @()
 
     $MiscAction = $false
     $CreateProcess = $false
@@ -162,6 +168,9 @@ Gets TTPs for the cmd.exe file.
     $LogonUser = $false
     $CobaltStrike = $false
     $CommandAndControl = $false
+    $MemoryCpy = $false
+    $MemProtect = $false
+    $EtwPatch = $false
 
     foreach ($api in $apiList.apis) {
         # Access API details
@@ -185,6 +194,18 @@ Gets TTPs for the cmd.exe file.
                 {
                     $CreateProcess = $true
                     $TA0002_CreateProcess_APIs += $matchResults
+                    break
+                }
+                "TX_MemoryCpy"
+                {
+                    $MemoryCpy = $true
+                    $MemoryCpy_APIs += $matchResults
+                    break
+                }
+                "TX_MemoryProtectionManipulation"
+                {
+                    $MemProtect = $true
+                    $MemProtect_APIs += $matchResults
                     break
                 }
                 "SectionMapping"
@@ -315,7 +336,11 @@ Gets TTPs for the cmd.exe file.
             }
         }
     }
-
+    if($MemoryCpy -eq $true -and $MemProtect -eq $true)
+    {
+        $EtwPatch = $true
+        $EtwPatch_APIs = $MemoryCpy_APIs + $MemProtect_APIs
+    }
     if($ProcessInjection_Execute -eq $true -and $ProcessInjection_Write -eq $true)
     {
         $ProcessInjection = $true
@@ -358,6 +383,7 @@ Gets TTPs for the cmd.exe file.
         TX_MiscAction =                     $MiscAction
         TX_CobaltStrikeAPI =                $CobaltStrike
         T1024_002_CommandAndControl =       $CommandAndControl
+        TX_EtwPatch =                       $EtwPatch
         TA0002_CreateProcess_APIs =         $TA0002_CreateProcess_APIs | Select-Object -Unique
         T1055_ProcessInjection_APIs =       $T1055_ProcessInjection_APIs | Select-Object -Unique
         T1055_012_ProcessHollowing_APIs =   $T1055_012_ProcessHollowing_APIs | Select-Object -Unique
@@ -375,6 +401,7 @@ Gets TTPs for the cmd.exe file.
         TX_MiscAction_APIs =                $MiscListAPIs
         TX_CobaltStrikeAPIs =               $CobaltStrike_APIs | Select-Object -Unique
         T1024_002_CommandAndControl_APIs =  $CommandAndControl_APIs | Select-Object -Unique
+        TX_EtwPatch_APIs =                  $EtwPatch_APIs | Select-Object -Unique
 
     }
 
